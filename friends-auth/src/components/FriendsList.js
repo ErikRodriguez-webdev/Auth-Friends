@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import FriendsCard from "./FriendsCard";
+import "../App.css";
 
 const FriendsList = (props) => {
   //local state
@@ -25,7 +27,17 @@ const FriendsList = (props) => {
   return (
     <div>
       <button onClick={() => signOut()}>Sign Out</button>
-      <p>friendsList</p>
+      <h1 className="friendsTitle">Friends</h1>
+      <div className="allFriendsContainer">
+        {friends.map((each) => (
+          <FriendsCard
+            key={each.id}
+            name={each.name}
+            age={each.age}
+            email={each.email}
+          />
+        ))}
+      </div>
     </div>
   );
 };

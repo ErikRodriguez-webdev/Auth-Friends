@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const Login = () => {
+const Login = (props) => {
   // local state
   const [credentials, setCredentials] = useState({
     username: "",
@@ -13,14 +13,17 @@ const Login = () => {
   };
 
   const handleSubmit = (event) => {
+    // prevent form refresh
     event.preventDefault();
     // modified axios post
     axiosWithAuth()
       .post("/api/login", credentials)
       .then((response) => {
         console.log("From Post success: ", response.data.payload);
+        // token in local storage
         window.localStorage.setItem("token", response.data.payload);
-        //add redirect here
+        // redirect here
+        props.history.push("/friends");
       })
       .catch((error) => {
         console.log("From Post error: ", error);

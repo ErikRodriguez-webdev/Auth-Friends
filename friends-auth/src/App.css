@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.friendsTitle {
+  margin: 2% auto;
+}
+
+.allFriendsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  margin: 0 auto;
+  width: 90%;
+  background: lightslategray;
+}
+
+.friend {
+  background: lightsteelblue;
+  text-align: center;
+  box-sizing: border-box;
+  width: 75%;
+}
