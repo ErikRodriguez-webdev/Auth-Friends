@@ -7,7 +7,6 @@ const Login = () => {
     username: "",
     password: ""
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleChanges = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -15,19 +14,17 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // hook for spinner
-    setIsLoading(true);
     // modified axios post
     axiosWithAuth()
       .post("/api/login", credentials)
       .then((response) => {
         console.log("From Post success: ", response.data.payload);
         window.localStorage.setItem("token", response.data.payload);
+        //add redirect here
       })
       .catch((error) => {
         console.log("From Post error: ", error);
-      })
-      .finally(setIsLoading(false));
+      });
     setCredentials({
       username: "",
       password: ""
